@@ -18,13 +18,14 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>44309</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <ApplicationInsightsResourceId>/subscriptions/766d3cce-222f-42bf-b0aa-5f3d97d74bf2/resourcegroups/cruise_reservation/providers/microsoft.insights/components/carnivalcorporationasia</ApplicationInsightsResourceId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -44,6 +45,34 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.1.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.1.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.1.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.1.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.1.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.1.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -52,6 +81,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -167,27 +198,53 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="cabin.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CruiseController.cs" />
+    <Compile Include="Controllers\CustomerItineraryController.cs" />
+    <Compile Include="Controllers\DestinationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ItineraryController.cs" />
+    <Compile Include="Controllers\ItineraryPortController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ShipCabinController.cs" />
+    <Compile Include="Controllers\ShipController.cs" />
+    <Compile Include="cruise.cs" />
+    <Compile Include="CruiseReservationDB.cs" />
+    <Compile Include="customer_itinerary.cs" />
+    <Compile Include="destination.cs" />
+    <Compile Include="ErrorHandler\AiHandleErrorAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="itinerary.cs" />
+    <Compile Include="itinerary_port.cs" />
+    <Compile Include="Migrations\201612071527530_InitialCreate.cs" />
+    <Compile Include="Migrations\201612071527530_InitialCreate.Designer.cs">
+      <DependentUpon>201612071527530_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="port.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ship.cs" />
+    <Compile Include="ship_cabin.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\cunard_line.jpg" />
+    <Content Include="images\princess_cruises.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="ApplicationInsights.config" />
+    <None Include="Properties\PublishProfiles\carnivalcorporationasia - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -200,7 +257,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -234,6 +293,44 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Cruise\Create.cshtml" />
+    <Content Include="Views\Cruise\Delete.cshtml" />
+    <Content Include="Views\Cruise\Details.cshtml" />
+    <Content Include="Views\Cruise\Edit.cshtml" />
+    <Content Include="Views\Cruise\Index.cshtml" />
+    <Content Include="Views\CustomerItinerary\Create.cshtml" />
+    <Content Include="Views\CustomerItinerary\Delete.cshtml" />
+    <Content Include="Views\CustomerItinerary\Details.cshtml" />
+    <Content Include="Views\CustomerItinerary\Edit.cshtml" />
+    <Content Include="Views\CustomerItinerary\Index.cshtml" />
+    <Content Include="Views\Destination\Create.cshtml" />
+    <Content Include="Views\Destination\Delete.cshtml" />
+    <Content Include="Views\Destination\Details.cshtml" />
+    <Content Include="Views\Destination\Edit.cshtml" />
+    <Content Include="Views\Destination\Index.cshtml" />
+    <Content Include="Views\Itinerary\Create.cshtml" />
+    <Content Include="Views\Itinerary\Delete.cshtml" />
+    <Content Include="Views\Itinerary\Details.cshtml" />
+    <Content Include="Views\Itinerary\Edit.cshtml" />
+    <Content Include="Views\Itinerary\Index.cshtml" />
+    <Content Include="Views\ItineraryPort\Create.cshtml" />
+    <Content Include="Views\ItineraryPort\Delete.cshtml" />
+    <Content Include="Views\ItineraryPort\Details.cshtml" />
+    <Content Include="Views\ItineraryPort\Edit.cshtml" />
+    <Content Include="Views\ItineraryPort\Index.cshtml" />
+    <Content Include="Views\ShipCabin\Create.cshtml" />
+    <Content Include="Views\ShipCabin\Delete.cshtml" />
+    <Content Include="Views\ShipCabin\Details.cshtml" />
+    <Content Include="Views\ShipCabin\Edit.cshtml" />
+    <Content Include="Views\ShipCabin\Index.cshtml" />
+    <Content Include="Views\CustomerItinerary\ConfirmBooking.cshtml" />
+    <Content Include="Views\Ship\Create.cshtml" />
+    <Content Include="Views\Ship\Delete.cshtml" />
+    <Content Include="Views\Ship\Details.cshtml" />
+    <Content Include="Views\Ship\Edit.cshtml" />
+    <Content Include="Views\Ship\Index.cshtml" />
+    <Content Include="Views\Itinerary\ShipItinerary.cshtml" />
+    <Content Include="Service References\Application Insights\ConnectedService.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -245,6 +342,14 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201612071527530_InitialCreate.resx">
+      <DependentUpon>201612071527530_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -264,7 +369,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>20086</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:20086/</IISUrl>
+          <IISUrl>https://localhost:44309/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

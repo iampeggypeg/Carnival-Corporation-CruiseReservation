@@ -54,9 +54,9 @@ namespace CruiseReservation
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "1807140772876329",
+               appSecret: "05f9b9c5404ce36667c4c6f428fc5847");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{

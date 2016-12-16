@@ -1,0 +1,34 @@
+﻿@model IEnumerable<CruiseReservation.cruise>
+
+@{
+    ViewBag.Title = "Cruise";
+}
+
+<h2>Cruise</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Cruise
+        </th>
+        <th>
+            Description
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item.cruise_name, "Details", "Destination", new { id = item.cruise_id }, null)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+        </tr>
+    }
+
+
+
+</table>

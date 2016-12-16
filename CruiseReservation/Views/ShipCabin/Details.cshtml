@@ -1,0 +1,90 @@
+﻿@model IEnumerable<CruiseReservation.shipCabinViewModel>
+@{
+    ViewBag.Title = "Select Cabin";
+}
+
+@{
+    string shipName = null;
+    string itineraryTitle = null;
+    string itineraryDate = null;
+}
+
+@foreach (var item in Model)
+{
+
+    shipName = item.ship_name;
+    itineraryTitle = item.itinerary_title;
+    itineraryDate = item.itinerary_date.ToShortDateString();
+}
+
+<h2>@itineraryTitle</h2>
+<br />
+
+
+<h4>Select Cabin</h4>
+
+<br />
+
+    Departure Date: @itineraryDate
+
+    <br />
+    <br />
+
+    Number of Guests: @Html.DropDownList("NoOfGuests", new SelectList(Model.Select(x => x.maximum_occupant).Distinct()), "1", 2)
+
+    <br />
+    <br />
+
+
+    <div>
+        <table class="table">
+            <tr>
+
+                <th>
+                    Dates
+
+                </th>
+                @foreach (var item in Model)
+            {
+                    <th>
+                        @Html.DisplayFor(model => item.cabin_name)
+                    </th>
+
+                }
+            </tr>
+
+            <tr>
+                <td>
+                    @itineraryDate
+
+                    <br />
+                    @shipName
+
+                </td>
+
+                @foreach (var item in Model)
+
+            {
+                    <td>
+                        @Html.DisplayFor(model => item.price)
+
+                    </td>
+                }
+
+            </tr>
+
+            <tr>
+                <td></td>
+
+                @foreach (var item in Model)
+                {
+                    <td>
+                        @Html.ActionLink("Select", "ConfirmBooking", "CustomerItinerary", new { cabinID = item.cabin_id, itineraryID = item.itinerary_id}, null)
+                    </td>
+                }
+
+            </tr>
+
+        </table>
+
+    </div>

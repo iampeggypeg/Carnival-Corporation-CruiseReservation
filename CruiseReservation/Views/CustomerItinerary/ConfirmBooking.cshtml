@@ -1,0 +1,124 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+
+@model CruiseReservation.customerItineraryViewModel
+
+
+    string itinerary_title = Model.itinerary_title;
+
+    int duration = (Model.end_date - Model.start_date).Days;
+    string start_date = Model.start_date.ToShortDateString();
+    string end_date = Model.end_date.ToShortDateString();
+
+
+    double total = Convert.ToDouble((Model.tour_price * 1) + (Model.cabin_price * duration));
+    double cruise_price = Convert.ToDouble(Model.tour_price);
+    double cabin_price = Convert.ToDouble(Model.cabin_price);
+
+
+    ViewBag.Title = "Booking Confirmation";
+
+
+<h2>Booking Confirmation</h2>
+
+
+<div>
+    <h4>@itinerary_title (@duration Days Tour)</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Cruise:
+
+        </dt>
+
+        <dd>
+            @Model.cruise
+        </dd>
+
+        <dt>
+            Ship:
+        </dt>
+
+        <dd>
+            @Model.ship
+        </dd>
+
+        <dt>
+            Check In:
+        </dt>
+
+        <dd>
+            @start_date
+        </dd>
+
+        <dt>
+            Check Out:
+        </dt>
+
+        <dd>
+            @end_date
+        </dd>
+
+        <dt>
+            No. of Guest(s):
+        </dt>
+
+        <dd>
+            1
+        </dd>
+
+        <dt>
+            Cabin:
+        </dt>
+
+        <dd>
+            @Model.cabin
+        </dd>
+
+        <dt>
+            Cruise Price:
+
+        </dt>
+
+        <dd>
+            @cruise_price USD
+
+        </dd>
+
+        <dt>
+            Cabin Price:
+
+        </dt>
+
+        <dd>
+            @cabin_price USD (Per Night)
+        </dd>
+
+        <dt>
+            Total:
+
+        </dt>
+
+        <dd>
+            @total USD
+        </dd>
+    </dl>
+
+    <p>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input class="btn btn-info" type="submit" id="confirm" value="Confirm"
+                        onclick="location.href='@Url.Action("Confirm", "CustomerItinerary", Model, null)'">
+            </div>
+            </div>
+</p>
+</div>
+}
+
+else
+{
+
+    Response.Redirect("~/Account/Login");
+
+    }

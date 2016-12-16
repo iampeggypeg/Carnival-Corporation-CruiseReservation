@@ -1,0 +1,61 @@
+﻿@model IEnumerable<CruiseReservation.itineraryViewModel>
+
+@{
+    ViewBag.Title = "Itineraries";
+}
+
+<h2>Itineraries</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Itinerary Title
+        </th>
+        <th>
+            Start Date
+        </th>
+        <th>
+            End Date
+        </th>
+        <th>
+            Price
+        </th>
+        <th>
+            Ship
+        </th>
+        <th></th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+
+        string start_date = item.start_date.ToShortDateString();
+        string end_date = item.end_date.ToShortDateString();
+
+
+        <tr>
+            <td>
+                @Html.ActionLink(item.itinerary_title, "Details", "Itinerary", new { id = item.itinerary_id }, null)
+            </td>
+            <td>
+                @start_date
+            </td>
+            <td>
+                @end_date
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cruise_price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ship_name)
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+
+<p>
+    *All price stated does not include accommodation fee. Accommodation fee varies based on your selection of cabin.
+</p>

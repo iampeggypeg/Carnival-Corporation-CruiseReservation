@@ -1,0 +1,51 @@
+﻿@model IEnumerable<CruiseReservation.itinerary_port>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.itinerary.itinerary_title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.port.port_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.arrival_date_time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.departure_date_time)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.itinerary.itinerary_title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.port.port_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.arrival_date_time)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.departure_date_time)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,75 @@
+﻿@model IEnumerable<CruiseReservation.itineraryPortViewModel>
+
+@{
+    string itineraryTitle = null;
+}
+@foreach (var item in Model)
+{
+    itineraryTitle = item.itinerary_title;
+}
+
+@{
+    ViewBag.Title = itineraryTitle;
+}
+
+<h2>@itineraryTitle</h2>
+
+@{
+    int i = 1;
+    int itinerary_id = 0;
+
+}
+
+<table class="table">
+    <tr>
+        <th>
+            No.
+        </th>
+        <th>
+            Port
+        </th>
+        <th>
+            Arrival Date
+        </th>
+        <th>
+            Departure Date
+        </th>
+        <th></th>
+    </tr>
+
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @i
+            </td>
+
+            <td>
+                @item.port_name
+
+            </td>
+
+            <td>
+                @item.arrival_date_time
+
+            </td>
+            <td>
+                @item.departure_date_time
+
+            </td>
+
+        </tr>
+
+        i = i + 1;
+        itinerary_id = item.itinerary_id;
+
+    }
+</table>
+
+
+<div>
+    @Html.ActionLink("Book Tour", "Details", "ShipCabin", new { id = itinerary_id }, null)
+</div>
+

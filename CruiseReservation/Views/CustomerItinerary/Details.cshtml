@@ -1,0 +1,40 @@
+﻿@model IEnumerable<CruiseReservation.customerItineraryBookingDetailsModel>
+
+@{
+    ViewBag.Title = "My Booking Details";
+}
+
+<h2>My Booking Details</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Itinerary Title
+        </th>
+        <th>
+            No. of Guest(s)
+        </th>
+        <th>
+            Cabin 
+        </th>
+        
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item.itinerary_title, "Details", "Itinerary", new {id = item.itinerary_id},null)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.no_of_pax)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cabin)
+            </td>
+        </tr>
+    }
+
+</table>
+   
+

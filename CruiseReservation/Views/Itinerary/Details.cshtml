@@ -1,0 +1,60 @@
+﻿@model CruiseReservation.itineraryViewModel
+@{
+    ViewBag.Title = "Itinerary Details";
+}
+
+<h2>@Html.Label(Model.itinerary_title)</h2>
+
+<div>
+    @{
+        int duration = (Model.end_date - Model.start_date).Days;
+        string start_date = Model.start_date.ToShortDateString();
+        string end_date = Model.end_date.ToShortDateString();
+
+    }
+
+    <h4>@duration Days Roundtrip</h4>
+    <hr />
+
+    <dl class="dl-horizontal">
+        <dt>
+            Departure Date:
+        </dt>
+
+        <dd>
+            @start_date
+        </dd>
+
+        <dt>
+            Cruise End Date:
+        </dt>
+
+        <dd>
+            @end_date
+        </dd>
+
+        <dt>
+            Price:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cruise_price)
+        </dd>
+
+        <dt>
+            Ship:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ship_name)
+        </dd>
+
+        <dd>
+            @Html.ActionLink("Ports", "Details", "ItineraryPort", new { id = Model.itinerary_id }, null)
+        </dd>
+    </dl>
+</div>
+
+
+
+
